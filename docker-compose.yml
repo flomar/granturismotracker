@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  application:
+    container_name: granturismotracker
+    build:
+      context: .
+    restart: always
+    expose:
+      - 9998
+    ports:
+      - "9999:9999"
+    volumes:
+      - ${HOME}/.granturismotracker/granturismotracker.sqlite:/granturismotracker/granturismotracker.sqlite

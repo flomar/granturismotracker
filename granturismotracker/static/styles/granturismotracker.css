@@ -1,0 +1,225 @@
+@font-face {font-family: "Oswald"; src: url("../fonts/Oswald.ttf");}
+@font-face {font-family: "Russo"; src: url("../fonts/Russo.ttf");}
+
+hr {
+    border: 0 none;
+    height: 0.125rem;
+    margin: 0.0rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 0.0rem;
+    padding-bottom: 0.0rem;
+    background-color: #80c0ffff;
+}
+
+.foswald {
+    font-family: "Oswald";
+}
+.frusso {
+    font-family: "Russo";
+}
+
+.fs-s {
+    font-size: 1.0rem;
+}
+.fs-m {
+    font-size: 1.5rem;
+}
+.fs-l {
+    font-size: 2.0rem;
+}
+
+.image-s {
+    width: 2.0rem;
+    height: 2.0rem;
+}
+.image-m {
+    width: 3.0rem;
+    height: 3.0rem;
+}
+.image-l {
+    width: 4.0rem;
+    height: 4.0rem;
+}
+
+.fg-blue-light {
+    color: #80c0ffff;
+}
+.fg-blue-dark {
+    color: #002040ff;
+}
+
+.bg-blue-light {
+    background-color: #80c0ffff;
+}
+.bg-blue-dark {
+    background-color: #002040ff;
+}
+
+.navbar-brand {
+    color: #80c0ffff;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+.navbar-toggler-icon {
+    background-image: url("/static/images/menu.png");
+}
+
+.navbar-nav > li > a {
+    color: #80c0ffff;
+}
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+    color: #ffffffff;
+}
+
+html, body {
+    background-color: #000000ff;
+    font-family: "Oswald";
+    color: #ffffffff;
+    margin: 0.0rem;
+    padding: 0.0rem;
+}
+
+input[type="text"] {
+    font-family: "Oswald";
+    font-size: 1.25rem;
+    width: 20%;
+}
+
+input[type="submit"] {
+    font-family: "Russo";
+    font-size: 1.25rem;
+    width: 10%;
+}
+
+input[type="button"] {
+    font-family: "Russo";
+    font-size: 1.25rem;
+    width: 10%;
+}
+
+select {
+    font-family: "Oswald";
+    font-size: 1.25rem;
+    width: 20%;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-w25 {
+    display: flex;
+    flex: 0 0 25%;
+}
+.flex-w50 {
+    display: flex;
+    flex: 0 0 50%;
+}
+.flex-w75 {
+    display: flex;
+    flex: 0 0 75%;
+}
+.flex-1 {
+    display: flex;
+    flex: 1;
+}
+.flex-hl {
+    justify-content: flex-start;
+}
+.flex-hc {
+    justify-content: center;
+}
+.flex-hr {
+    justify-content: flex-end;
+}
+.flex-vt {
+    align-items: flex-start;
+}
+.flex-vc {
+    align-items: center;
+}
+.flex-vb {
+    align-items: flex-end;
+}
+
+.m-xs {margin: 0.5rem;}
+.m-s {margin: 1.0rem;}
+.m-m {margin: 1.25rem;}
+.m-l {margin: 2.5rem;}
+.m-xl {margin: 3.0rem;}
+.mh-xs {margin-left: 0.5rem; margin-right: 0.5rem;}
+.mh-s {margin-left: 1.0rem; margin-right: 1.0rem;}
+.mh-m {margin-left: 1.25rem; margin-right: 1.25rem;}
+.mh-l {margin-left: 2.5rem; margin-right: 2.5rem;}
+.mh-xl {margin-left: 3.0rem; margin-right: 3.0rem;}
+.ml-xs {margin-left: 0.5rem;}
+.ml-s {margin-left: 1.0rem;}
+.ml-m {margin-left: 1.25rem;}
+.ml-l {margin-left: 2.5rem;}
+.ml-xl {margin-left: 3.0rem;}
+.mr-xs {margin-right: 0.5rem;}
+.mr-s {margin-right: 1.0rem;}
+.mr-m {margin-right: 1.25rem;}
+.mr-l {margin-right: 2.5rem;}
+.mr-xl {margin-right: 3.0rem;}
+.mv-xs {margin-top: 0.5rem; margin-bottom: 0.5rem;}
+.mv-s {margin-top: 1.0rem; margin-bottom: 1.0rem;}
+.mv-m {margin-top: 1.25rem; margin-bottom: 1.25rem;}
+.mv-l {margin-top: 2.5rem; margin-bottom: 2.5rem;}
+.mv-xl {margin-top: 3.0rem; margin-bottom: 3.0rem;}
+.mt-xs {margin-top: 0.5rem;}
+.mt-s {margin-top: 1.0rem;}
+.mt-m {margin-top: 1.25rem;}
+.mt-l {margin-top: 2.5rem;}
+.mt-xl {margin-top: 3.0rem;}
+.mb-xs {margin-bottom: 0.5rem;}
+.mb-s {margin-bottom: 1.0rem;}
+.mb-m {margin-bottom: 1.25rem;}
+.mb-l {margin-bottom: 2.5rem;}
+.mb-xl {margin-bottom: 3.0rem;}
+
+.p-xs {padding: 0.5rem;}
+.p-s {padding: 1.0rem;}
+.p-m {padding: 1.25rem;}
+.p-l {padding: 2.5rem;}
+.p-xl {padding: 3.0rem;}
+.ph-xs {padding-left: 0.5rem; padding-right: 0.5rem;}
+.ph-s {padding-left: 1.0rem; padding-right: 1.0rem;}
+.ph-m {padding-left: 1.25rem; padding-right: 1.25rem;}
+.ph-l {padding-left: 2.5rem; padding-right: 2.5rem;}
+.ph-xl {padding-left: 3.0rem; padding-right: 3.0rem;}
+.pl-xs {padding-left: 0.5rem;}
+.pl-s {padding-left: 1.0rem;}
+.pl-m {padding-left: 1.25rem;}
+.pl-l {padding-left: 2.5rem;}
+.pl-xl {padding-left: 3.0rem;}
+.pr-xs {padding-right: 0.5rem;}
+.pr-s {padding-right: 1.0rem;}
+.pr-m {padding-right: 1.25rem;}
+.pr-l {padding-right: 2.5rem;}
+.pr-xl {padding-right: 3.0rem;}
+.pv-xs {padding-top: 0.5rem; padding-bottom: 0.5rem;}
+.pv-s {padding-top: 1.0rem; padding-bottom: 1.0rem;}
+.pv-m {padding-top: 1.25rem; padding-bottom: 1.25rem;}
+.pv-l {padding-top: 2.5rem; padding-bottom: 2.5rem;}
+.pv-xl {padding-top: 3.0rem; padding-bottom: 3.0rem;}
+.pt-xs {padding-top: 0.5rem;}
+.pt-s {padding-top: 1.0rem;}
+.pt-m {padding-top: 1.25rem;}
+.pt-l {padding-top: 2.5rem;}
+.pt-xl {padding-top: 3.0rem;}
+.pb-xs {padding-bottom: 0.5rem;}
+.pb-s {padding-bottom: 1.0rem;}
+.pb-m {padding-bottom: 1.25rem;}
+.pb-l {padding-bottom: 2.5rem;}
+.pb-xl {padding-bottom: 3.0rem;}
