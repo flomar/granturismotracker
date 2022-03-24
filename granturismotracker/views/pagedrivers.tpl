@@ -14,10 +14,16 @@
                 <img class="image-s ml-xs" src="/static/images/points.png">
             </div>
             <div class="flex-row mv-xs">
+                <img class="image-s mr-xs" src="/static/images/rank.png">
+                <div class="flex-1 flex-hl flex-vc foswald fs-s">{{driver.rank}}</div>
+                <div class="flex-1 flex-hr flex-vc foswald fs-s"><div class="fg-red">{{points_past}}</div></div>
+                <img class="image-s ml-xs" src="/static/images/pointspast.png">
+            </div>
+            <div class="flex-row mv-xs">
                 <img class="image-s mr-xs" src="/static/images/sessions.png">
                 <div class="flex-1 flex-hl flex-vc foswald fs-s">{{driver.sessions}}</div>
-                <div class="flex-1 flex-hr flex-vc foswald fs-s"><div class="fg-red">{{points_past}}</div>&nbsp;|&nbsp;<div class="fg-green">{{points_current}}</div></div>
-                <img class="image-s ml-xs" src="/static/images/points.png">
+                <div class="flex-1 flex-hr flex-vc foswald fs-s"><div class="fg-green">{{points_current}}</div></div>
+                <img class="image-s ml-xs" src="/static/images/pointscurrent.png">
             </div>
         </div>
     <% end %>
