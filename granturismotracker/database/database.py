@@ -49,6 +49,7 @@ class Record(Model):
     driver = ForeignKeyField(Driver, field=Driver.id, on_delete="CASCADE")
     track = ForeignKeyField(Track, field=Track.id, on_delete="CASCADE")
     car = ForeignKeyField(Car, field=Car.id, on_delete="CASCADE")
+    pps = DecimalField(max_digits=10, decimal_places=3, default=Decimal())
     time = IntegerField(default=0)
     gold = BooleanField(default=False)
     silver = BooleanField(default=False)
@@ -136,11 +137,18 @@ def cars_delete_car(name):
         return False
 
 
-def records_create_record(driver, track, car, time):
+def records_create_record(driver, track, car, pps, time):
     try:
         driver = Driver.select().where(Driver.name == driver).get()
         track = Track.select().where(Track.name == track).get()
         car = Car.select().where(Car.name == car).get()
+        if str(pps) == "":
+            return False
+        else:
+            pps = re.search("^([0-9]+)\.([0-9]+)$", pps)
+            if not pps:
+                return False
+            pps = Decimal("{0}.{1}".format(pps.group(1), pps.group(2)))
         if str(time) == "":
             time = 0
         else:
@@ -152,7 +160,7 @@ def records_create_record(driver, track, car, time):
             time_milliseconds = int(time.group(3))
             time = time_minutes * 60 * 1000 + time_seconds * 1000 + time_milliseconds
         try:
-            record = Record(date_time=datetime.now(), driver=driver, track=track, car=car, time=time)
+            record = Record(date_time=datetime.now(), driver=driver, track=track, car=car, pps=pps, time=time)
             record.save()
         except:
             return False
@@ -222,7 +230,7 @@ def update_statistics(record=None):
                     record_opponent_best = records_opponents[0] if len(records_opponents) > 0 else None
                     if not record_opponent_best:
                         continue
-                    driver_points_current += Decimal(record_opponent_best.time) / Decimal(record_driver_best.time) * Decimal(points_current)
+                    driver_points_current += Decimal(record_opponent_best.pps) / Decimal(record_driver_best.pps) * Decimal(record_opponent_best.time) / Decimal(record_driver_best.time) * Decimal(points_current)
             driver.points_current = driver_points_current
             driver.save()
         for driver in Driver.select():

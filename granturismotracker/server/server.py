@@ -76,7 +76,7 @@ def route_post_administrator_drivers_create():
         if action == "form_cars_delete_action":
             cars_delete_car(bottle.request.forms.form_cars_delete_select_car_name)
         if action == "form_records_create_action":
-            records_create_record(bottle.request.forms.form_records_create_select_driver_name, bottle.request.forms.form_records_create_select_track_name, bottle.request.forms.form_records_create_select_car_name, bottle.request.forms.form_records_create_input_text_record_time)
+            records_create_record(bottle.request.forms.form_records_create_select_driver_name, bottle.request.forms.form_records_create_select_track_name, bottle.request.forms.form_records_create_select_car_name, bottle.request.forms.form_records_create_input_text_record_pps, bottle.request.forms.form_records_create_input_text_record_time)
         if action == "form_records_delete_action":
             records_delete_record(bottle.request.forms.form_records_delete_select_record)
         data = {

@@ -4,6 +4,7 @@
 <div class="flex-column m-s">
     <% for record in records: %>
         <% date_time = record.date_time.strftime("%Y-%m-%d %H:%M:%S") %>
+        <% pps = "{0:.{1}f}".format(record.pps, 3) %>
         <% time_minutes = int(int(record.time) / int(60 * 1000)) %>
         <% time_seconds = int(int(record.time - time_minutes * 60 * 1000) / int(1000)) %>
         <% time_milliseconds = int(int(record.time - time_minutes * 60 * 1000 - time_seconds * 1000)) %>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="flex-row mv-xs">
                     <img class="image-s mr-xs" src="/static/images/car.png">
-                    <div class="flex-1 flex-hl flex-vc foswald fs-s">{{record.car.name}}</div>
+                    <div class="flex-1 flex-hl flex-vc foswald fs-s">{{record.car.name}} ({{pps}})</div>
                 </div>
                 <div class="flex-row mv-xs">
                     <img class="image-s mr-xs" src="/static/images/time.png">

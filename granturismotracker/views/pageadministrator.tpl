@@ -101,7 +101,8 @@
                     <option value="{{car.name}}">{{car.name}}</option>
                 <% end %>
             </select>
-            <input class="w-75 mv-xs" id="form_records_create_input_text_record_time" name="form_records_create_input_text_record_time" type="text" placeholder="Time (00:00.000)...">
+            <input class="w-75 mv-xs" id="form_records_create_input_text_record_pps" name="form_records_create_input_text_record_pps" type="text" placeholder="PPs [000.000]...">
+            <input class="w-75 mv-xs" id="form_records_create_input_text_record_time" name="form_records_create_input_text_record_time" type="text" placeholder="Time [00:00.000]...">
             <input class="w-75 mv-xs" type="submit" value="Create">
         </div>
     </form>
@@ -112,11 +113,12 @@
             <select class="w-75 mv-xs" id="form_records_delete_select_record" name="form_records_delete_select_record">
                 <% for record in records: %>
                     <% date_time = record.date_time.strftime("%Y-%m-%d %H:%M:%S") %>
+                    <% pps = "{0:.{1}f}".format(record.pps, 3) %>
                     <% time_minutes = int(int(record.time) / int(60 * 1000)) %>
                     <% time_seconds = int(int(record.time - time_minutes * 60 * 1000) / int(1000)) %>
                     <% time_milliseconds = int(int(record.time - time_minutes * 60 * 1000 - time_seconds * 1000)) %>
                     <% time = "{:01d}:{:02d}.{:03d}".format(time_minutes, time_seconds, time_milliseconds) %>
-                    <option value="{{record.id}}">[{{date_time}}] {{record.driver.name}} / {{record.track.name}} / {{record.car.name}} / {{time}}</option>
+                    <option value="{{record.id}}">[{{date_time}}] {{record.driver.name}} / {{record.track.name}} / {{record.car.name}} ({{pps}}) / {{time}}</option>
                 <% end %>
             </select>
             <input class="w-75 mv-xs" id="form_records_delete_input_button_delete" type="button" value="Delete" onclick="onFormRecordsDeleteInputButtonDelete()">
