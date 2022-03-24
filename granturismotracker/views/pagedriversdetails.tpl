@@ -22,15 +22,15 @@
     <div class="flex-column mv-xs p-xs bg-checkered">
         <div class="flex-row mv-xs">
             <div class="flex-column flex-1 flex-hc flex-vc">
-                <img class="image-m" src="/static/images/gold.png">
+                <img class="animate__animated animate__infinite animate__pulse image-m" src="/static/images/gold.png">
                 <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{gold}}</div>
             </div>
             <div class="flex-column flex-1 flex-hc flex-vc">
-                <img class="image-m" src="/static/images/silver.png">
+                <img class="animate__animated animate__infinite animate__pulse image-m" src="/static/images/silver.png">
                 <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{silver}}</div>
             </div>
             <div class="flex-column flex-1 flex-hc flex-vc">
-                <img class="image-m" src="/static/images/bronze.png">
+                <img class="animate__animated animate__infinite animate__pulse image-m" src="/static/images/bronze.png">
                 <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{bronze}}</div>
             </div>
         </div>
