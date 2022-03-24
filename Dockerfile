@@ -8,16 +8,16 @@ WORKDIR .
 
 RUN mkdir ./granturismotracker
 
-COPY ./requirements.txt ./granturismotracker/requirements.txt
-
 WORKDIR ./granturismotracker
 
-RUN pip install -r requirements.txt
-
+COPY ./granturismotracker.py ./granturismotracker.py
 COPY ./granturismotracker/ ./granturismotracker/
-COPY ./wsgi.ini ./wsgi.ini
-COPY ./nginx.ini /usr/share/nginx/nginx.ini
+COPY ./configuration/wsgi.ini ./configuration/wsgi.ini
+COPY ./configuration/nginx.ini /usr/share/nginx/nginx.ini
 COPY ./start.sh /start.sh
-RUN chmod +x /start.sh
 
+COPY ./requirements/requirements.txt ./requirements/requirements.txt
+RUN pip install -r ./requirements/requirements.txt
+
+RUN chmod +x /start.sh
 CMD ["/start.sh"]

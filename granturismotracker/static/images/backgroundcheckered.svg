@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="256"
+   height="256"
+   viewBox="0 0 256 256"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="backgroundcheckered.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="0.4692965"
+     inkscape:cx="429.36608"
+     inkscape:cy="-41.551556"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     units="px"
+     width="1024px" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g942">
+      <rect
+         style="fill:#002040;fill-opacity:1;stroke-width:1.04924"
+         id="rect1022"
+         width="128"
+         height="128"
+         x="0"
+         y="0" />
+      <rect
+         style="fill:#002040;fill-opacity:1;stroke-width:1.04924"
+         id="rect1122"
+         width="128"
+         height="128"
+         x="128"
+         y="128" />
+      <rect
+         style="fill:#001020;fill-opacity:1;stroke-width:1.04924"
+         id="rect1124"
+         width="128"
+         height="128"
+         x="0"
+         y="128" />
+      <rect
+         style="fill:#001020;fill-opacity:1;stroke-width:1.04924"
+         id="rect982"
+         width="128"
+         height="128"
+         x="128"
+         y="0" />
+    </g>
+  </g>
+</svg>

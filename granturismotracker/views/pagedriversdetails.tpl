@@ -2,6 +2,39 @@
 % include("header.tpl")
 
 <div class="flex-column m-s">
+    <div class="flex-column mv-xs p-xs bg-checkered">
+        <% points = "{0:.{1}f}".format(driver.points, 3) %>
+        <% points_past = "{0:.{1}f}".format(driver.points_past, 3) %>
+        <% points_current = "{0:.{1}f}".format(driver.points_current, 3) %>
+        <div class="flex-row mv-xs">
+            <img class="image-s mr-xs" src="/static/images/driver.png">
+            <div class="flex-1 flex-hl flex-vc foswald fs-s">{{driver.name}}</div>
+            <div class="flex-1 flex-hr flex-vc foswald fs-s"><strong>{{points}}</strong></div>
+            <img class="image-s ml-xs" src="/static/images/points.png">
+        </div>
+        <div class="flex-row mv-xs">
+            <img class="image-s mr-xs" src="/static/images/sessions.png">
+            <div class="flex-1 flex-hl flex-vc foswald fs-s">{{driver.sessions}}</div>
+            <div class="flex-1 flex-hr flex-vc foswald fs-s"><div class="fg-red">{{points_past}}</div>&nbsp;|&nbsp;<div class="fg-green">{{points_current}}</div></div>
+            <img class="image-s ml-xs" src="/static/images/points.png">
+        </div>
+    </div>
+    <div class="flex-column mv-xs p-xs bg-checkered">
+        <div class="flex-row mv-xs">
+            <div class="flex-column flex-1 flex-hc flex-vc">
+                <img class="image-m" src="/static/images/gold.png">
+                <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{gold}}</div>
+            </div>
+            <div class="flex-column flex-1 flex-hc flex-vc">
+                <img class="image-m" src="/static/images/silver.png">
+                <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{silver}}</div>
+            </div>
+            <div class="flex-column flex-1 flex-hc flex-vc">
+                <img class="image-m" src="/static/images/bronze.png">
+                <div class="flex-1 flex-hc flex-vc mt-xs foswald fs-s">{{bronze}}</div>
+            </div>
+        </div>
+    </div>
     <% for record in records: %>
         <% date_time = record.date_time.strftime("%Y-%m-%d %H:%M:%S") %>
         <% time_minutes = int(int(record.time) / int(60 * 1000)) %>

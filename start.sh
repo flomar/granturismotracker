@@ -1,3 +1,3 @@
 #!/bin/bash
 
-nginx -c nginx.ini && uwsgi wsgi.ini
+nginx -c nginx.ini && uwsgi configuration/wsgi.ini

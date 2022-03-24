@@ -25,6 +25,9 @@
                     <a class="nav-link" href="/records">Records</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/rules">Rules</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/administrator">Administrator</a>
                 </li>
             </ul>

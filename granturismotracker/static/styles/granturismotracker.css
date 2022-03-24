@@ -29,6 +29,10 @@ hr {
     font-size: 2.0rem;
 }
 
+.image-xs {
+    width: 1.0rem;
+    height: 1.0rem;
+}
 .image-s {
     width: 2.0rem;
     height: 2.0rem;
@@ -41,6 +45,10 @@ hr {
     width: 4.0rem;
     height: 4.0rem;
 }
+.image-xl {
+    width: 5.0rem;
+    height: 5.0rem;
+}
 
 .fg-blue-light {
     color: #80c0ffff;
@@ -48,12 +56,27 @@ hr {
 .fg-blue-dark {
     color: #002040ff;
 }
+.fg-red {
+    color: #ffc0c0;
+}
+.fg-green {
+    color: #c0ffc0;
+}
 
 .bg-blue-light {
     background-color: #80c0ffff;
 }
 .bg-blue-dark {
     background-color: #002040ff;
+}
+
+.bg-checkered {
+    background-image: url("/static/images/backgroundcheckered.png");
+    background-repeat: repeat;
+    background-size: 2.0rem 2.0rem;
+    border-color: #80c0ffff;
+    border-style: solid;
+    border-width: 0.0875rem;
 }
 
 .navbar-brand {
@@ -80,7 +103,7 @@ hr {
 html, body {
     background-color: #000000ff;
     font-family: "Oswald";
-    color: #ffffffff;
+    color: #80c0ffff;
     margin: 0.0rem;
     padding: 0.0rem;
 }
