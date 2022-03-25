@@ -3,7 +3,7 @@
 
 <div class="flex-column m-s">
     <% if len(reports) > 0: %>
-        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mt-s">Reports</div>
+        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mv-s">Reports</div>
         <% for report in reports: %>
             <% date_time = report.date_time.strftime("%Y-%m-%d %H:%M:%S") %>
             <% pps = "{0:.{1}f}".format(report.pps, 3) %>
@@ -30,7 +30,7 @@
         <% end %>
     <% end %>
     <% if len(events) > 0: %>
-        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mt-s">Events</div>
+        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mv-s">Events</div>
         <% for event in events: %>
             <% date_time = event.date_time.strftime("%A, %Y-%m-%d %H:%M:%S") %>
             <% if event.date_time_expiration >= now: %>

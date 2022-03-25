@@ -3,7 +3,7 @@
 
 <div class="flex-column m-s">
     <% if len(reports) > 0: %>
-        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mt-s">Reports</div>
+        <div class="flex-1 flex-hc frusso fs-m fg-blue-light mv-s">Reports</div>
         <% for report in reports: %>
             <% date_time = report.date_time.strftime("%Y-%m-%d %H:%M:%S") %>
             <% pps = "{0:.{1}f}".format(report.pps, 3) %>
