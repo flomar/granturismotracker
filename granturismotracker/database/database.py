@@ -240,7 +240,7 @@ def update_statistics(record_new=None):
         if record_new:
             performance = Decimal(0.0)
             if record_new.time != 0:
-                records_opponents = Record.select().where((Record.time > 0) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc()).limit(1)
+                records_opponents = Record.select().where((Record.time > 0) & (Record.track == record_new.track) & (Record.car == record_new.car)).order_by(Record.time.asc()).limit(1)
                 record_opponent_best = records_opponents[0] if len(records_opponents) > 0 else None
                 performance = Decimal(points_current) if not record_opponent_best else Decimal(record_opponent_best.pps) / Decimal(record_new.pps) * Decimal(record_opponent_best.time) / Decimal(record_new.time) * Decimal(points_current)
             report = Report(date_time=record_new.date_time, date_time_expiration=record_new.date_time + timedelta(hours=12), driver=record_new.driver, track=record_new.track, car=record_new.car, pps=record_new.pps, time=record_new.time, gold=record_new.gold, silver=record_new.silver, bronze=record_new.bronze, performance=performance)
