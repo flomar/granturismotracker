@@ -156,7 +156,7 @@ def cars_delete_car(name):
         return False
 
 
-def records_create_record(date_time, driver, track, car, pps, time):
+def records_create_record(driver, track, car, pps, time):
     try:
         driver = Driver.select().where(Driver.name == driver).get()
         track = Track.select().where(Track.name == track).get()
@@ -179,7 +179,7 @@ def records_create_record(date_time, driver, track, car, pps, time):
             time_milliseconds = int(time.group(3))
             time = time_minutes * 60 * 1000 + time_seconds * 1000 + time_milliseconds
         try:
-            record = Record(date_time=date_time, driver=driver, track=track, car=car, pps=pps, time=time)
+            record = Record(date_time=datetime.now(), driver=driver, track=track, car=car, pps=pps, time=time)
             record.save()
         except:
             return False
