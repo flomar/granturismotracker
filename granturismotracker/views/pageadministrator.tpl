@@ -86,6 +86,7 @@
     <form id="form_records_create" action="" method="post">
         <div class="flex-column ml-s">
             <input type="hidden" id="action" name="action" value="form_records_create_action">
+            <input class="w-75 mv-xs" id="form_records_create_input_date_time_record_date_time" name="form_records_create_input_date_time_record_date_time" type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}" step="1" value="{{now_string}}">
             <select class="w-75 mv-xs" id="form_records_create_select_driver_name" name="form_records_create_select_driver_name">
                 <% for driver in drivers: %>
                     <option value="{{driver.name}}">{{driver.name}}</option>

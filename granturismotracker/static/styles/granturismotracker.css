@@ -62,6 +62,9 @@ hr {
 .fg-green {
     color: #c0ffc0;
 }
+.fg-report-highlight {
+    color: #ffffffff;
+}
 
 .bg-blue-light {
     background-color: #80c0ffff;

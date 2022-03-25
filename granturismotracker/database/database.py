@@ -1,6 +1,6 @@
 import re
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 from peewee import *
 
@@ -11,6 +11,7 @@ database = SqliteDatabase("granturismotracker.sqlite", pragmas={"foreign_keys": 
 class Event(Model):
     id = AutoField()
     date_time = DateTimeField()
+    date_time_expiration = DateTimeField()
     class Meta:
         database = database
 
@@ -58,10 +59,28 @@ class Record(Model):
         database = database
 
 
+class Report(Model):
+    id = AutoField()
+    date_time = DateTimeField()
+    date_time_expiration = DateTimeField()
+    driver = ForeignKeyField(Driver, field=Driver.id, on_delete="CASCADE")
+    track = ForeignKeyField(Track, field=Track.id, on_delete="CASCADE")
+    car = ForeignKeyField(Car, field=Car.id, on_delete="CASCADE")
+    pps = DecimalField(max_digits=10, decimal_places=3, default=Decimal())
+    time = IntegerField(default=0)
+    gold = BooleanField(default=False)
+    silver = BooleanField(default=False)
+    bronze = BooleanField(default=False)
+    performance = DecimalField(max_digits=10, decimal_places=3, default=Decimal())
+    class Meta:
+        database = database
+
+
 def events_create_event(date_time):
     try:
-        print(date_time)
-        event = Event(date_time=datetime.fromisoformat(date_time))
+        date_time = datetime.fromisoformat(date_time)
+        date_time_expiration = date_time + timedelta(hours=12)
+        event = Event(date_time=date_time, date_time_expiration=date_time_expiration)
         event.save()
         return True
     except:
@@ -137,7 +156,7 @@ def cars_delete_car(name):
         return False
 
 
-def records_create_record(driver, track, car, pps, time):
+def records_create_record(date_time, driver, track, car, pps, time):
     try:
         driver = Driver.select().where(Driver.name == driver).get()
         track = Track.select().where(Track.name == track).get()
@@ -160,7 +179,7 @@ def records_create_record(driver, track, car, pps, time):
             time_milliseconds = int(time.group(3))
             time = time_minutes * 60 * 1000 + time_seconds * 1000 + time_milliseconds
         try:
-            record = Record(date_time=datetime.now(), driver=driver, track=track, car=car, pps=pps, time=time)
+            record = Record(date_time=date_time, driver=driver, track=track, car=car, pps=pps, time=time)
             record.save()
         except:
             return False
@@ -178,55 +197,63 @@ def records_delete_record(record):
         return False
 
 
-def update_statistics(record=None):
+def update_statistics(record_new=None):
     try:
         points_past_gold = Decimal(1.0)
         points_past_silver = Decimal(0.25)
         points_past_bronze = Decimal(0.125)
         points_current = Decimal(100.0)
-        if record:
-            if record.driver:
-                record.driver.sessions += 1
-                record.driver.save()
-            if record.track:
-                record.track.sessions += 1
-                record.track.save()
-            if record.car:
-                record.car.sessions += 1
-                record.car.save()
-        if record:
-            records = Record.select().order_by(Record.time.asc()).where((Record.time > 0) & (Record.driver != record.driver) & (Record.track == record.track) & (Record.car == record.car)).limit(3)
+        if record_new:
+            if record_new.driver:
+                record_new.driver.sessions += 1
+                record_new.driver.save()
+            if record_new.track:
+                record_new.track.sessions += 1
+                record_new.track.save()
+            if record_new.car:
+                record_new.car.sessions += 1
+                record_new.car.save()
+        if record_new:
+            records = Record.select().where((Record.time > 0) & (Record.driver != record_new.driver) & (Record.track == record_new.track) & (Record.car == record_new.car)).order_by(Record.time.asc()).limit(3)
             record_gold = records[0] if len(records) >= 1 else None
             record_silver = records[1] if len(records) >= 2 else None
             record_bronze = records[2] if len(records) >= 3 else None
-            if record_gold and (record.time == 0 or record.time > record_gold.time):
+            if record_gold and (record_new.time == 0 or record_new.time > record_gold.time):
                 record_gold.driver.points_past += points_past_gold
                 record_gold.driver.save()
-            if record_silver and (record.time == 0 or record.time > record_silver.time):
+            if record_silver and (record_new.time == 0 or record_new.time > record_silver.time):
                 record_silver.driver.points_past += points_past_silver
                 record_silver.driver.save()
-            if record_bronze and (record.time == 0 or record.time > record_bronze.time):
+            if record_bronze and (record_new.time == 0 or record_new.time > record_bronze.time):
                 record_bronze.driver.points_past += points_past_bronze
                 record_bronze.driver.save()
         for track in Track.select():
             for car in Car.select():
                 rank = 1
-                for record in Record.select().order_by(Record.time.asc()).where((Record.time > 0) & (Record.track == track) & (Record.car == car)):
+                for record in Record.select().where((Record.time > 0) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc(), Record.pps.asc()):
                     record.gold = rank == 1
                     record.silver = rank == 2
                     record.bronze = rank == 3
                     record.save()
                     rank += 1
-
+        record_new = Record.select().where(Record.id==record_new.id).get() if record_new else None
+        if record_new:
+            performance = Decimal(0.0)
+            if record_new.time != 0:
+                records_opponents = Record.select().where((Record.time > 0) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc()).limit(1)
+                record_opponent_best = records_opponents[0] if len(records_opponents) > 0 else None
+                performance = Decimal(points_current) if not record_opponent_best else Decimal(record_opponent_best.pps) / Decimal(record_new.pps) * Decimal(record_opponent_best.time) / Decimal(record_new.time) * Decimal(points_current)
+            report = Report(date_time=record_new.date_time, date_time_expiration=record_new.date_time + timedelta(hours=12), driver=record_new.driver, track=record_new.track, car=record_new.car, pps=record_new.pps, time=record_new.time, gold=record_new.gold, silver=record_new.silver, bronze=record_new.bronze, performance=performance)
+            report.save()
         for driver in Driver.select():
             driver_points_current = Decimal(0.0)
             for track in Track.select():
                 for car in Car.select():
-                    records_driver = Record.select().order_by(Record.time.asc()).where((Record.time > 0) & (Record.driver == driver) & (Record.track == track) & (Record.car == car)).limit(1)
+                    records_driver = Record.select().where((Record.time > 0) & (Record.driver == driver) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc()).limit(1)
                     record_driver_best = records_driver[0] if len(records_driver) > 0 else None
                     if not record_driver_best:
                         continue
-                    records_opponents = Record.select().order_by(Record.time.asc()).where((Record.time > 0) & (Record.track == track) & (Record.car == car)).limit(1)
+                    records_opponents = Record.select().where((Record.time > 0) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc()).limit(1)
                     record_opponent_best = records_opponents[0] if len(records_opponents) > 0 else None
                     if not record_opponent_best:
                         continue
@@ -241,6 +268,17 @@ def update_statistics(record=None):
             driver.rank = rank
             driver.save()
             rank += 1
+        for record in Record.select():
+            if record.time == 0:
+                record.delete_instance()
+        for driver in Driver.select():
+            for track in Track.select():
+                for car in Car.select():
+                    entry = 1
+                    for record in Record.select().where((Record.time > 0) & (Record.driver == driver) & (Record.track == track) & (Record.car == car)).order_by(Record.time.asc()):
+                        if entry > 3:
+                            record.delete_instance()
+                        entry += 1
         return True
     except:
         return False
