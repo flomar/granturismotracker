@@ -25,7 +25,7 @@
                 </div>
                 <div class="flex-row mv-xs">
                     <img class="image-s mr-xs" src="/static/images/car.png">
-                    <div class="flex-1 flex-hl flex-vc foswald fs-s">{{record.car.name}} ({{pps}} PPs)</div>
+                    <div class="flex-1 flex-hl flex-vc foswald fs-s">{{record.car.name}} ({{pps}})</div>
                 </div>
                 <div class="flex-row mv-xs">
                     <img class="image-s mr-xs" src="/static/images/time.png">
