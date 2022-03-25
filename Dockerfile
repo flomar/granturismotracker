@@ -2,9 +2,11 @@ FROM ubuntu:latest
 
 RUN DEBIAN_FRONTEND=noninteractive rm -rf /var/lib/apt/lists/*
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -y --fix-missing
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nginx-full python3 python3-pip sqlite3 uwsgi uwsgi-plugin-python3 vim
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nginx-full python3 python3-pip sqlite3 systemd uwsgi uwsgi-plugin-python3 vim
 
 WORKDIR .
+
+RUN timedatectl set-timezone Europe/Berlin
 
 RUN mkdir ./granturismotracker
 
